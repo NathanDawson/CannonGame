@@ -18,20 +18,22 @@ namespace Tech_Exc_Project_2
 
         public int xCoOrdinate()
         {
+            int angle = _validator.ParseAngle();
+            _validator.CheckAngleRange();
+
             int velocity = _validator.ParseVelocity();
             _validator.CheckVelocityRange();
-
-            int angle = _validator.ParseAngle();
 
             return (int) Math.Round(Math.Cos(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
         }
 
         public int yCoOrdinate()
         {
+            int angle = _validator.ParseAngle();
+            _validator.CheckAngleRange();
+
             int velocity = _validator.ParseVelocity();
             _validator.CheckVelocityRange();
-
-            int angle = _validator.ParseAngle();
 
             return (int) Math.Round(Math.Sin(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
         }
