@@ -16,14 +16,6 @@ namespace Tech_Exc_Project_2
             _validator = validator;
         }
 
-        public int Degrees()
-        {
-            int angle = _validator.ParseAngle();
-            _validator.CheckAngleRange();
-
-            return (int) Math.Round(angle * (Math.PI / 180), MidpointRounding.AwayFromZero);
-        }
-
         public int xCoOrdinate()
         {
             int velocity = _validator.ParseVelocity();
@@ -31,7 +23,7 @@ namespace Tech_Exc_Project_2
 
             int angle = _validator.ParseAngle();
 
-            return (int)Math.Round(Math.Cos(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
+            return (int) Math.Round(Math.Cos(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
         }
 
         public int yCoOrdinate()
@@ -41,7 +33,7 @@ namespace Tech_Exc_Project_2
 
             int angle = _validator.ParseAngle();
 
-            return (int)Math.Round(Math.Sin(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
+            return (int) Math.Round(Math.Sin(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
         }
     }
 }
