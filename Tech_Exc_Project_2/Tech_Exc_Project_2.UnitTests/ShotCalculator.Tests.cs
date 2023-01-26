@@ -38,6 +38,31 @@ namespace Tech_Exc_Project_2.UnitTests
             Assert.AreEqual(2, result);
         }
 
+        public void xCoOrdinate_CaculateMaxX_ReturnMaxX()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetAngle()).Returns("90");
+            MockInput.Setup(x => x.GetVelocity()).Returns("20");
 
+            var validator = new InputValidator(MockInput.Object);
+            var shotCalculator = new ShotCalculator(validator);
+            var result = shotCalculator.xCoOrdinate();
+
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void yCoOrdinate_CaculateMaxY_ReturnMaxY()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetAngle()).Returns("90");
+            MockInput.Setup(x => x.GetVelocity()).Returns("20");
+
+            var validator = new InputValidator(MockInput.Object);
+            var shotCalculator = new ShotCalculator(validator);
+            var result = shotCalculator.yCoOrdinate();
+
+            Assert.AreEqual(20, result);
+        }
     }
 }
