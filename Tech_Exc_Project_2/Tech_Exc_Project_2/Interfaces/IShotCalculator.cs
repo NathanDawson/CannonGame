@@ -8,8 +8,8 @@ namespace Tech_Exc_Project_2
 {
     public interface IShotCalculator
     {
-        int xCoOrdinate();
-        int yCoOrdinate();
+        int xCoOrdinate(int angle, int velocity);
+        int yCoOrdinate(int angle, int velocity);
 
     }
 }

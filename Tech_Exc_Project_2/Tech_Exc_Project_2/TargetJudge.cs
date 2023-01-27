@@ -17,9 +17,9 @@ namespace Tech_Exc_Project_2
             _shotCalculator = shotCalculator;
         }
 
-        public bool HitOrNot()
+        public bool HitOrNot(int angle, int velocity)
         {
-            return (_targetGenerator.GetXCoOrdinates() == _shotCalculator.xCoOrdinate()) && (_targetGenerator.GetYCoOrdinates() == _shotCalculator.yCoOrdinate());
+            return (_targetGenerator.GetXCoOrdinates() == _shotCalculator.xCoOrdinate(angle, velocity)) && (_targetGenerator.GetYCoOrdinates() == _shotCalculator.yCoOrdinate(angle, velocity));
         }
     }
 }

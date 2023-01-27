@@ -16,7 +16,7 @@ namespace Tech_Exc_Project_2
             ITargetGenerator _targetGenerator = new TargetGenerator();
             ITargetJudge _targetJudge = new TargetJudge(_targetGenerator, _shotCalculator);
             IFinalShotCounter _finalShotCounter = new FinalShotCounter();
-            IFlow _flow = new Flow(_command, _targetGenerator, _targetJudge, _finalShotCounter);
+            IFlow _flow = new Flow(_command, _validator, _targetGenerator, _targetJudge, _finalShotCounter);
 
             return _flow;
         }

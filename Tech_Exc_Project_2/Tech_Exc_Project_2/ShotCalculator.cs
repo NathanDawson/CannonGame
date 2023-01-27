@@ -16,25 +16,13 @@ namespace Tech_Exc_Project_2
             _validator = validator;
         }
 
-        public int xCoOrdinate()
+        public int xCoOrdinate(int angle, int velocity)
         {
-            int angle = _validator.ParseAngle();
-            _validator.CheckAngleRange();
-
-            int velocity = _validator.ParseVelocity();
-            _validator.CheckVelocityRange();
-
             return (int) Math.Round(Math.Cos(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
         }
 
-        public int yCoOrdinate()
+        public int yCoOrdinate(int angle, int velocity)
         {
-            int angle = _validator.ParseAngle();
-            _validator.CheckAngleRange();
-
-            int velocity = _validator.ParseVelocity();
-            _validator.CheckVelocityRange();
-
             return (int) Math.Round(Math.Sin(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);
         }
     }

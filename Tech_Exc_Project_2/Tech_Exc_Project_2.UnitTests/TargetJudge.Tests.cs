@@ -26,7 +26,7 @@ namespace Tech_Exc_Project_2.UnitTests
             var targetGenerator = new TargetGenerator();
             var targetJudge = new TargetJudge(MockOutput.Object, shotCalculator);
 
-            var result = targetJudge.HitOrNot();
+            var result = targetJudge.HitOrNot(35, 15);
 
             Assert.IsTrue(result);
         }
@@ -47,7 +47,7 @@ namespace Tech_Exc_Project_2.UnitTests
             var targetGenerator = new TargetGenerator();
             var targetJudge = new TargetJudge(MockOutput.Object, shotCalculator);
 
-            var result = targetJudge.HitOrNot();
+            var result = targetJudge.HitOrNot(25, 15);
 
             Assert.IsFalse(result);
         }

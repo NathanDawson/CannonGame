@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
@@ -19,7 +20,7 @@ namespace Tech_Exc_Project_2.UnitTests
 
             var validator = new InputValidator(MockInput.Object);
             var shotCalculator = new ShotCalculator(validator);
-            var result = shotCalculator.xCoOrdinate();
+            var result = shotCalculator.xCoOrdinate(20, 5);
 
             Assert.AreEqual(5, result);
         }
@@ -33,7 +34,7 @@ namespace Tech_Exc_Project_2.UnitTests
 
             var validator = new InputValidator(MockInput.Object);
             var shotCalculator = new ShotCalculator(validator);
-            var result = shotCalculator.yCoOrdinate();
+            var result = shotCalculator.yCoOrdinate(20, 5);
 
             Assert.AreEqual(2, result);
         }
@@ -46,7 +47,7 @@ namespace Tech_Exc_Project_2.UnitTests
 
             var validator = new InputValidator(MockInput.Object);
             var shotCalculator = new ShotCalculator(validator);
-            var result = shotCalculator.xCoOrdinate();
+            var result = shotCalculator.xCoOrdinate(90, 20);
 
             Assert.AreEqual(0, result);
         }
@@ -60,65 +61,9 @@ namespace Tech_Exc_Project_2.UnitTests
 
             var validator = new InputValidator(MockInput.Object);
             var shotCalculator = new ShotCalculator(validator);
-            var result = shotCalculator.yCoOrdinate();
+            var result = shotCalculator.yCoOrdinate(90, 20);
 
             Assert.AreEqual(20, result);
         }
-
-        [TestMethod]
-        public void xCoOrdinate_AngleOverRange_ThrowException()
-        {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("100");
-            MockInput.Setup(x => x.GetVelocity()).Returns("5");
-
-            var validator = new InputValidator(MockInput.Object);
-            var shotCalculator = new ShotCalculator(validator);
-
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => shotCalculator.xCoOrdinate());
-        }
-
-        [TestMethod]
-        public void xCoOrdinate_VelocityOverRange_ThrowException()
-        {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("45");
-            MockInput.Setup(x => x.GetVelocity()).Returns("35");
-
-            var validator = new InputValidator(MockInput.Object);
-            var shotCalculator = new ShotCalculator(validator);
-
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => shotCalculator.xCoOrdinate());
-        }
-
-        [TestMethod]
-        public void yCoOrdinate_AngleOverRange_ThrowException()
-        {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("100");
-            MockInput.Setup(x => x.GetVelocity()).Returns("5");
-
-            var validator = new InputValidator(MockInput.Object);
-            var shotCalculator = new ShotCalculator(validator);
-
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => shotCalculator.yCoOrdinate());
-        }
-
-        [TestMethod]
-        public void yCoOrdinate_VelocityOverRange_ThrowException()
-        {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("45");
-            MockInput.Setup(x => x.GetVelocity()).Returns("35");
-
-            var validator = new InputValidator(MockInput.Object);
-            var shotCalculator = new ShotCalculator(validator);
-
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => shotCalculator.yCoOrdinate());
-        }
-
-
-
-
     }
 }
