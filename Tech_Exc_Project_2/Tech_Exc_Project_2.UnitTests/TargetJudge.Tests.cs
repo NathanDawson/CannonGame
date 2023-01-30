@@ -28,7 +28,7 @@ namespace Tech_Exc_Project_2.UnitTests
 
             var result = targetJudge.HitOrNot(35, 15);
 
-            Assert.IsTrue(result);
+            Assert.AreEqual(ITargetJudge.Status.Hit, result);
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace Tech_Exc_Project_2.UnitTests
 
             var result = targetJudge.HitOrNot(25, 15);
 
-            Assert.IsFalse(result);
+            Assert.AreEqual(ITargetJudge.Status.Miss, result);
         }
     }
 }

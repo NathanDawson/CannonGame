@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using static Tech_Exc_Project_2.ITargetJudge;
 
 namespace Tech_Exc_Project_2
 {
@@ -17,9 +19,9 @@ namespace Tech_Exc_Project_2
             _shotCalculator = shotCalculator;
         }
 
-        public bool HitOrNot(int angle, int velocity)
+        public Status HitOrNot(int angle, int velocity)
         {
-            return (_targetGenerator.GetXCoOrdinates() == _shotCalculator.xCoOrdinate(angle, velocity)) && (_targetGenerator.GetYCoOrdinates() == _shotCalculator.yCoOrdinate(angle, velocity));
+            return (_targetGenerator.GetXCoOrdinates() == _shotCalculator.xCoOrdinate(angle, velocity)) && (_targetGenerator.GetYCoOrdinates() == _shotCalculator.yCoOrdinate(angle, velocity)) ? Status.Hit : Status.Miss;
         }
     }
 }

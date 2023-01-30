@@ -8,6 +8,8 @@ namespace Tech_Exc_Project_2
 {
     public interface ITargetJudge
     {
-        bool HitOrNot(int angle, int velocity);
+        enum Status {Hit, Miss};
+
+        Status HitOrNot(int angle, int velocity);
     }
 }

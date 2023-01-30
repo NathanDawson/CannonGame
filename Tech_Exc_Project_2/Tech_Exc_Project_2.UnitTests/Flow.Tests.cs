@@ -23,15 +23,17 @@ namespace Tech_Exc_Project_2.UnitTests
             MockValid.Setup(x => x.ParseVelocity()).Returns(10);
 
             var MockJudge = new Mock<ITargetJudge>();
-            MockJudge.Setup(x => x.HitOrNot(35, 10)).Returns((bool)true);
+            MockJudge.Setup(x => x.HitOrNot(35, 10)).Returns(ITargetJudge.Status.Hit);
 
-
-            var flow = new Flow(MockInput.Object, MockValid.Object, MockOutput.Object, MockJudge.Object, MockFinal.Object);
+            var flow = new Flow(MockInput.Object, MockValid.Object, MockShot.Object, MockOutput.Object, MockJudge.Object, MockFinal.Object);
 
             flow.Run();
 
             MockOutput.Verify(x => x.SetXCoOrdinates(), Times.Once);
             MockOutput.Verify(x => x.SetYCoOrdinates(), Times.Once);
+
+            MockOutput.Verify(x => x.GetXCoOrdinates(), Times.Once);
+            MockOutput.Verify(x => x.GetYCoOrdinates(), Times.Once);
 
             MockInput.Verify(x => x.SetAngle(), Times.Once());
             MockInput.Verify(x => x.SetVelocity(), Times.Once());
