@@ -101,6 +101,79 @@ namespace Tech_Exc_Project_2.UnitTests
         }
 
         [TestMethod]
+        public void ParseShotSelection_stringToInt_ReturnsOne()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
+
+            var validator = new InputValidator(MockInput.Object);
+            var result = validator.ParseShotSelection();
+
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void ParseShotSelection_stringToInt_ReturnsTwo()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetShotSelection()).Returns("2");
+
+            var validator = new InputValidator(MockInput.Object);
+            var result = validator.ParseShotSelection();
+
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
+        public void ParseShotSelection_stringToInt_ThrowException()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetShotSelection()).Returns("Test");
+
+            var validator = new InputValidator(MockInput.Object);
+
+            Assert.ThrowsException<FormatException>(() => validator.ParseShotSelection());
+        }
+
+        [TestMethod]
+        public void MortorOrNot_UserInputsOne_ReturnsFalse()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
+
+            var validator = new InputValidator(MockInput.Object);
+            validator.ParseShotSelection();
+            var result = validator.MortorOrNot();
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void MortorOrNot_UserInputsTwo_ReturnsTrue()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetShotSelection()).Returns("2");
+
+            var validator = new InputValidator(MockInput.Object);
+            validator.ParseShotSelection();
+            var result = validator.MortorOrNot();
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void MortorOrNot_UserInputsThree_ThrowException()
+        {
+            var MockInput = new Mock<ICommandLine>();
+            MockInput.Setup(x => x.GetShotSelection()).Returns("3");
+
+            var validator = new InputValidator(MockInput.Object);
+            validator.ParseShotSelection();
+
+            Assert.ThrowsException<Exception>(() => validator.MortorOrNot());
+        }
+
+        [TestMethod]
         public void CheckAngleRange_InsideLowerRange_ReturnsNoException()
         {
             // Arrange
