@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Tech_Exc_Project_2
 {
@@ -16,8 +18,12 @@ namespace Tech_Exc_Project_2
         private readonly ITargetGenerator _targetGenerator;
         private readonly ITargetJudge _targetJudge;
         private readonly IFinalShotCounter _finalShotCounter;
+        private readonly ITimeTracker _timeTracker;
+        private readonly IPopulateJson _populateJson;
+        private readonly IUserData _userData;
 
-        public Flow(ICommandLine command, IInputValidator validator, IShotCalculator shotCalc, ITargetGenerator targetGenerator, ITargetJudge targetJudge, IFinalShotCounter finalShotCounter)
+        public Flow(ICommandLine command, IInputValidator validator, IShotCalculator shotCalc, ITargetGenerator targetGenerator, ITargetJudge targetJudge, IFinalShotCounter finalShotCounter,
+            ITimeTracker timeTracker, IPopulateJson populateJson, IUserData userData)
         {
             this._command = command;
             this._validator = validator;
@@ -25,12 +31,19 @@ namespace Tech_Exc_Project_2
             this._targetGenerator = targetGenerator;
             this._targetJudge = targetJudge;
             this._finalShotCounter = finalShotCounter;
+            this._timeTracker = timeTracker;
+            this._populateJson = populateJson;
+            this._userData = userData;
         }
 
         public void Run()
         {
             _targetGenerator.SetXCoOrdinates();
             _targetGenerator.SetYCoOrdinates();
+
+            _userData.SetPlayerName();
+
+            _timeTracker.StartTimer();
 
             Console.WriteLine("Your target can be found at: ");
             Console.WriteLine("X: {0}", _targetGenerator.GetXCoOrdinates());
@@ -64,6 +77,12 @@ namespace Tech_Exc_Project_2
                     continue;
                 }
             }
+
+            _timeTracker.StopTimer();
+            
+            _populateJson.UpdateJson(_userData.GetPlayerName(), _finalShotCounter.GetCounter(), _timeTracker.GetTime());
+
+            _populateJson.PrintJson();
         }
     }
 }
