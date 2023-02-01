@@ -12,5 +12,7 @@ namespace Tech_Exc_Project_2
         string GetAngle();
         void SetVelocity();
         string GetVelocity();
+        void SetPlayerName();
+        string GetPlayerName();
     }
 }

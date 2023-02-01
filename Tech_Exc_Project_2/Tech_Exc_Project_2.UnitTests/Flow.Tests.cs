@@ -18,7 +18,6 @@ namespace Tech_Exc_Project_2.UnitTests
             var MockOutput = new Mock<ITargetGenerator>();
             var MockFinal = new Mock<IFinalShotCounter>();
             var MockTime = new Mock<ITimeTracker>();
-            var MockUser = new Mock<IUserData>();
             var MockJson = new Mock<IPopulateJson>();
 
             var MockValid = new Mock<IInputValidator>();
@@ -28,14 +27,12 @@ namespace Tech_Exc_Project_2.UnitTests
             var MockJudge = new Mock<ITargetJudge>();
             MockJudge.Setup(x => x.HitOrNot(35, 10)).Returns(ITargetJudge.Status.Hit);
 
-            var flow = new Flow(MockInput.Object, MockValid.Object, MockShot.Object, MockOutput.Object, MockJudge.Object, MockFinal.Object, MockTime.Object, MockJson.Object, MockUser.Object);
+            var flow = new Flow(MockInput.Object, MockValid.Object, MockShot.Object, MockOutput.Object, MockJudge.Object, MockFinal.Object, MockTime.Object, MockJson.Object);
 
             flow.Run();
 
             MockOutput.Verify(x => x.SetXCoOrdinates(), Times.Once);
             MockOutput.Verify(x => x.SetYCoOrdinates(), Times.Once);
-
-            MockUser.Verify(x => x.SetPlayerName(), Times.Once);
 
             MockTime.Verify(x=> x.StartTimer(), Times.Once);
 
@@ -44,6 +41,7 @@ namespace Tech_Exc_Project_2.UnitTests
 
             MockInput.Verify(x => x.SetAngle(), Times.Once());
             MockInput.Verify(x => x.SetVelocity(), Times.Once());
+            MockInput.Verify(x => x.SetPlayerName(), Times.Once);
 
             MockValid.Verify(x => x.ParseAngle(), Times.Once);
             MockValid.Verify(x => x.ParseVelocity(), Times.Once);

@@ -20,10 +20,9 @@ namespace Tech_Exc_Project_2
         private readonly IFinalShotCounter _finalShotCounter;
         private readonly ITimeTracker _timeTracker;
         private readonly IPopulateJson _populateJson;
-        private readonly IUserData _userData;
 
         public Flow(ICommandLine command, IInputValidator validator, IShotCalculator shotCalc, ITargetGenerator targetGenerator, ITargetJudge targetJudge, IFinalShotCounter finalShotCounter,
-            ITimeTracker timeTracker, IPopulateJson populateJson, IUserData userData)
+            ITimeTracker timeTracker, IPopulateJson populateJson)
         {
             this._command = command;
             this._validator = validator;
@@ -33,7 +32,6 @@ namespace Tech_Exc_Project_2
             this._finalShotCounter = finalShotCounter;
             this._timeTracker = timeTracker;
             this._populateJson = populateJson;
-            this._userData = userData;
         }
 
         public void Run()
@@ -41,7 +39,7 @@ namespace Tech_Exc_Project_2
             _targetGenerator.SetXCoOrdinates();
             _targetGenerator.SetYCoOrdinates();
 
-            _userData.SetPlayerName();
+            _command.SetPlayerName();
 
             _timeTracker.StartTimer();
 
@@ -80,7 +78,7 @@ namespace Tech_Exc_Project_2
 
             _timeTracker.StopTimer();
             
-            _populateJson.UpdateJson(_userData.GetPlayerName(), _finalShotCounter.GetCounter(), _timeTracker.GetTime());
+            _populateJson.UpdateJson(_command.GetPlayerName(), _finalShotCounter.GetCounter(), _timeTracker.GetTime());
 
             _populateJson.PrintJson();
         }

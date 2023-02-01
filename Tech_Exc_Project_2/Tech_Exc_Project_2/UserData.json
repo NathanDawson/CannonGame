@@ -78,5 +78,10 @@
     "UserName": "Fdgdf",
     "FinalScore": 1,
     "TimeElapsed": 10
+  },
+  {
+    "UserName": "Sam",
+    "FinalScore": 12,
+    "TimeElapsed": 59
   }
 ]

@@ -6,23 +6,10 @@ using System.Threading.Tasks;
 
 namespace Tech_Exc_Project_2
 {
-    public class UserData : IUserData
+    public class UserData
     {
-        private string PlayerName;
-
         public string UserName { get; set; }
         public int FinalScore { get; set; }
         public int TimeElapsed { get; set; }
-
-        public void SetPlayerName()
-        {
-            Console.WriteLine("Please enter a username to start: ");
-            PlayerName = Console.ReadLine();
-        }
-
-        public string GetPlayerName()
-        {
-            return PlayerName; 
-        }
     }
 }

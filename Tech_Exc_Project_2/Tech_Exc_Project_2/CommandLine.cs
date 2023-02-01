@@ -10,6 +10,7 @@ namespace Tech_Exc_Project_2
     {
         private string angle;
         private string velocity;
+        private string PlayerName;
 
         public void SetAngle()
         {
@@ -31,6 +32,17 @@ namespace Tech_Exc_Project_2
         public string GetVelocity()
         {
             return velocity;
+        }
+
+        public void SetPlayerName()
+        {
+            Console.WriteLine("Please enter a username to start: ");
+            PlayerName = Console.ReadLine();
+        }
+
+        public string GetPlayerName()
+        {
+            return PlayerName;
         }
     }
 }
