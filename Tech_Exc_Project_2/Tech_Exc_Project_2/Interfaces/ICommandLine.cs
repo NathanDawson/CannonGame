@@ -14,5 +14,7 @@ namespace Tech_Exc_Project_2
         string GetVelocity();
         void SetPlayerName();
         string GetPlayerName();
+        void SetShotSelection();
+        string GetShotSelection();
     }
 }

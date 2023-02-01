@@ -12,5 +12,8 @@ namespace Tech_Exc_Project_2
         int ParseVelocity();
         void CheckAngleRange();
         void CheckVelocityRange();
+        int ParseShotSelection();
+        bool MortorOrNot();
+        void EnforceMortorAngle();
     }
 }

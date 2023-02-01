@@ -40,6 +40,42 @@ namespace Tech_Exc_Project_2
             }
         }
 
+        public int ParseShotSelection()
+        {
+            try
+            {
+                return int.Parse(_command.GetShotSelection());
+            }
+            catch (FormatException)
+            {
+                throw new FormatException("Please enter 1 for Cannon or 2 for Mortor");
+            }
+        }
+
+        public bool MortorOrNot()
+        {
+            if (_command.GetShotSelection() == "1")
+            {
+                return false;
+            }
+            else if (_command.GetShotSelection() == "2")
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception("Please enter 1 for Cannon or 2 for Mortor");
+            }
+        }
+
+        public void EnforceMortorAngle()
+        {
+            if (MortorOrNot() && ParseAngle() % 5 != 0)
+            {
+                throw new FormatException("Please enter an angle that is divisible by 5");
+            }
+        }
+
         public void CheckAngleRange()
         {
             if (int.Parse(_command.GetAngle()) < 1 || int.Parse(_command.GetAngle()) > 90)

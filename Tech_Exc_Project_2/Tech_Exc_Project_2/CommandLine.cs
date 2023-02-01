@@ -11,6 +11,7 @@ namespace Tech_Exc_Project_2
         private string angle;
         private string velocity;
         private string PlayerName;
+        public string UserShotSelection;
 
         public void SetAngle()
         {
@@ -43,6 +44,19 @@ namespace Tech_Exc_Project_2
         public string GetPlayerName()
         {
             return PlayerName;
+        }
+
+        public void SetShotSelection()
+        {
+            Console.WriteLine("Would you like to shoot with a Cannon or a Mortar?");
+            Console.WriteLine("Please enter 1 for Cannon or 2 for Mortor");
+
+            UserShotSelection = Console.ReadLine();
+        }
+
+        public string GetShotSelection()
+        {
+            return UserShotSelection;
         }
     }
 }

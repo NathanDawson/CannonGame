@@ -10,6 +10,6 @@ namespace Tech_Exc_Project_2
     {
         enum Status {Hit, Miss};
 
-        Status HitOrNot(int angle, int velocity);
+        Status HitOrNot(int angle, int velocity, bool mortorOrNot);
     }
 }

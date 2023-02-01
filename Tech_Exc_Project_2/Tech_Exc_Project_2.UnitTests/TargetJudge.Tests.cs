@@ -16,6 +16,7 @@ namespace Tech_Exc_Project_2.UnitTests
             var MockInput = new Mock<ICommandLine>();
             MockInput.Setup(x => x.GetAngle()).Returns("35");
             MockInput.Setup(x => x.GetVelocity()).Returns("15");
+            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
 
             var MockOutput = new Mock<ITargetGenerator>();
             MockOutput.Setup(x => x.GetXCoOrdinates()).Returns(12);
@@ -26,7 +27,7 @@ namespace Tech_Exc_Project_2.UnitTests
             var targetGenerator = new TargetGenerator();
             var targetJudge = new TargetJudge(MockOutput.Object, shotCalculator);
 
-            var result = targetJudge.HitOrNot(35, 15);
+            var result = targetJudge.HitOrNot(35, 15, false);
 
             Assert.AreEqual(ITargetJudge.Status.Hit, result);
         }
@@ -37,6 +38,7 @@ namespace Tech_Exc_Project_2.UnitTests
             var MockInput = new Mock<ICommandLine>();
             MockInput.Setup(x => x.GetAngle()).Returns("25");
             MockInput.Setup(x => x.GetVelocity()).Returns("15");
+            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
 
             var MockOutput = new Mock<ITargetGenerator>();
             MockOutput.Setup(x => x.GetXCoOrdinates()).Returns(12);
@@ -47,7 +49,7 @@ namespace Tech_Exc_Project_2.UnitTests
             var targetGenerator = new TargetGenerator();
             var targetJudge = new TargetJudge(MockOutput.Object, shotCalculator);
 
-            var result = targetJudge.HitOrNot(25, 15);
+            var result = targetJudge.HitOrNot(25, 15, false);
 
             Assert.AreEqual(ITargetJudge.Status.Miss, result);
         }

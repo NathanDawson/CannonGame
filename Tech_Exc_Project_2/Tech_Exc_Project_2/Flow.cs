@@ -50,18 +50,23 @@ namespace Tech_Exc_Project_2
             bool loop = true;
             while (loop)
             {
-                _command.SetAngle();
-                _command.SetVelocity();
+                _command.SetShotSelection();
+                _validator.ParseShotSelection();
+                bool mortorOrNot = _validator.MortorOrNot();
 
+                _command.SetAngle();
                 int angle = _validator.ParseAngle();
                 _validator.CheckAngleRange();
+                _validator.EnforceMortorAngle();
 
+                _command.SetVelocity();
                 int velocity = _validator.ParseVelocity();
                 _validator.CheckVelocityRange();
 
                 _finalShotCounter.SetCounter();
 
-                if (_targetJudge.HitOrNot(angle, velocity) == ITargetJudge.Status.Hit)
+
+                if (_targetJudge.HitOrNot(angle, velocity, mortorOrNot) == ITargetJudge.Status.Hit)
                 {
                     Console.WriteLine("Well done.You hit the target after {0} attempts", _finalShotCounter.GetCounter());
                     loop = false;

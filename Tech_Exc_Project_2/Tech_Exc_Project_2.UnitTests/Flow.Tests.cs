@@ -25,7 +25,7 @@ namespace Tech_Exc_Project_2.UnitTests
             MockValid.Setup(x => x.ParseVelocity()).Returns(10);
 
             var MockJudge = new Mock<ITargetJudge>();
-            MockJudge.Setup(x => x.HitOrNot(35, 10)).Returns(ITargetJudge.Status.Hit);
+            MockJudge.Setup(x => x.HitOrNot(35, 10, false)).Returns(ITargetJudge.Status.Hit);
 
             var flow = new Flow(MockInput.Object, MockValid.Object, MockShot.Object, MockOutput.Object, MockJudge.Object, MockFinal.Object, MockTime.Object, MockJson.Object);
 
@@ -51,7 +51,7 @@ namespace Tech_Exc_Project_2.UnitTests
             MockFinal.Verify(x => x.SetCounter(), Times.Once);
             MockFinal.Verify(x => x.GetCounter(), Times.Exactly(2));
 
-            MockJudge.Verify(x => x.HitOrNot(35, 10), Times.Once);
+            MockJudge.Verify(x => x.HitOrNot(35, 10, false), Times.Once);
 
             MockTime.Verify(x => x.StopTimer(), Times.Once);
 
