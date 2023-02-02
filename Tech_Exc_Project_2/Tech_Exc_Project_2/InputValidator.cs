@@ -8,18 +8,11 @@ namespace Tech_Exc_Project_2
 {
     public class InputValidator : IInputValidator
     {
-        private ICommandLine _command;
-
-        public InputValidator(ICommandLine command)
-        {
-            _command = command;
-        }
-
-        public int ParseAngle()
+        public int ParseAngle(string angle)
         {
             try
             {
-                return int.Parse(_command.GetAngle());
+                return int.Parse(angle);
             }
             catch (FormatException)
             {
@@ -28,11 +21,11 @@ namespace Tech_Exc_Project_2
             }
         }
 
-        public int ParseVelocity()
+        public int ParseVelocity(string velocity)
         {
             try
             {
-                return int.Parse(_command.GetVelocity());
+                return int.Parse(velocity);
             }
             catch (FormatException)
             {
@@ -40,11 +33,11 @@ namespace Tech_Exc_Project_2
             }
         }
 
-        public int ParseShotSelection()
+        public int ParseShotSelection(string shotType)
         {
             try
             {
-                return int.Parse(_command.GetShotSelection());
+                return int.Parse(shotType);
             }
             catch (FormatException)
             {
@@ -52,13 +45,13 @@ namespace Tech_Exc_Project_2
             }
         }
 
-        public bool MortorOrNot()
+        public bool MortorOrNot(string shotType)
         {
-            if (_command.GetShotSelection() == "1")
+            if (shotType == "1")
             {
                 return false;
             }
-            else if (_command.GetShotSelection() == "2")
+            else if (shotType == "2")
             {
                 return true;
             }
@@ -68,25 +61,25 @@ namespace Tech_Exc_Project_2
             }
         }
 
-        public void EnforceMortorAngle()
+        public void EnforceMortorAngle(string angle, string shotType)
         {
-            if (MortorOrNot() && ParseAngle() % 5 != 0)
+            if (MortorOrNot(shotType) && ParseAngle(angle) % 5 != 0)
             {
                 throw new FormatException("Please enter an angle that is divisible by 5");
             }
         }
 
-        public void CheckAngleRange()
+        public void CheckAngleRange(string angle)
         {
-            if (int.Parse(_command.GetAngle()) < 1 || int.Parse(_command.GetAngle()) > 90)
+            if (int.Parse(angle) < 1 || int.Parse(angle) > 90)
             { 
                 throw new ArgumentOutOfRangeException("Please enter a whole number between 1 and 90");
             }
         }
 
-        public void CheckVelocityRange()
+        public void CheckVelocityRange(string velocity)
         {
-            if (int.Parse(_command.GetVelocity()) < 1 || int.Parse(_command.GetVelocity()) > 20)
+            if (int.Parse(velocity) < 1 || int.Parse(velocity) > 20)
             {
                 throw new ArgumentOutOfRangeException("Please enter a whole number between 1 and 20");
             }

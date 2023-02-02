@@ -11,11 +11,9 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void ParseAngle_StringToInt_ReturnOne()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("1");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            var result = validator.ParseAngle();
+            var result = validator.ParseAngle("1");
 
             Assert.AreEqual(1, result);
         }
@@ -23,11 +21,9 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void ParseAngle_StringToInt_ReturnNinty()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("90");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            var result = validator.ParseAngle();
+            var result = validator.ParseAngle("90");
 
             Assert.AreEqual(90, result);
         }
@@ -35,33 +31,25 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void ParseAngle_WordToInt_ThrowFormatException()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("Ten");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-
-            Assert.ThrowsException<FormatException>(() => validator.ParseAngle());
+            Assert.ThrowsException<FormatException>(() => validator.ParseAngle("Test"));
         }
 
         [TestMethod]
         public void ParseAngle_DecimaltoInt_ThrowFormatException()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("5.5");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-
-            Assert.ThrowsException<FormatException>(() => validator.ParseAngle());
+            Assert.ThrowsException<FormatException>(() => validator.ParseAngle("5.5"));
         }
 
         [TestMethod]
         public void ParseVelocity_StringToInt_ReturnOne()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("1");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            var result = validator.ParseVelocity();
+            var result = validator.ParseVelocity("1");
 
             Assert.AreEqual(1, result);
         }
@@ -69,11 +57,9 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void ParseVelocity_StringToInt_ReturnTwenty()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("20");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            var result = validator.ParseVelocity();
+            var result = validator.ParseVelocity("20");
 
             Assert.AreEqual(20, result);
         }
@@ -81,33 +67,25 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void ParseVelocity_WordToInt_ThrowFormatException()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("Ten");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-
-            Assert.ThrowsException<FormatException>(() => validator.ParseVelocity());
+            Assert.ThrowsException<FormatException>(() => validator.ParseVelocity("Test"));
         }
 
         [TestMethod]
         public void ParseVelocity_DecimaltoInt_ThrowFormatException()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("5.5");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-
-            Assert.ThrowsException<FormatException>(() => validator.ParseVelocity());
+            Assert.ThrowsException<FormatException>(() => validator.ParseVelocity("5.5"));
         }
 
         [TestMethod]
         public void ParseShotSelection_stringToInt_ReturnsOne()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            var result = validator.ParseShotSelection();
+            var result = validator.ParseShotSelection("1");
 
             Assert.AreEqual(1, result);
         }
@@ -115,11 +93,9 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void ParseShotSelection_stringToInt_ReturnsTwo()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetShotSelection()).Returns("2");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            var result = validator.ParseShotSelection();
+            var result = validator.ParseShotSelection("2");
 
             Assert.AreEqual(2, result);
         }
@@ -127,23 +103,17 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void ParseShotSelection_stringToInt_ThrowException()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetShotSelection()).Returns("Test");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-
-            Assert.ThrowsException<FormatException>(() => validator.ParseShotSelection());
+            Assert.ThrowsException<FormatException>(() => validator.ParseShotSelection("Test"));
         }
 
         [TestMethod]
         public void MortorOrNot_UserInputsOne_ReturnsFalse()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            validator.ParseShotSelection();
-            var result = validator.MortorOrNot();
+            var result = validator.MortorOrNot("1");
 
             Assert.IsFalse(result);
         }
@@ -151,12 +121,9 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void MortorOrNot_UserInputsTwo_ReturnsTrue()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetShotSelection()).Returns("2");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            validator.ParseShotSelection();
-            var result = validator.MortorOrNot();
+            var result = validator.MortorOrNot("2");
 
             Assert.IsTrue(result);
         }
@@ -164,29 +131,19 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void MortorOrNot_UserInputsThree_ThrowException()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetShotSelection()).Returns("3");
+            var validator = new InputValidator();
 
-            var validator = new InputValidator(MockInput.Object);
-            validator.ParseShotSelection();
-
-            Assert.ThrowsException<Exception>(() => validator.MortorOrNot());
+            Assert.ThrowsException<Exception>(() => validator.MortorOrNot("3"));
         }
 
         [TestMethod]
         public void CheckAngleRange_InsideLowerRange_ReturnsNoException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("1");
-
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
+            var validator = new InputValidator();
+           
             try
             {
-                validator.CheckAngleRange();
+                validator.CheckAngleRange("1");
             }
             catch (Exception ex)
             {
@@ -197,17 +154,11 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void CheckAngleRange_InsideUpperRange_ReturnsNoException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("90");
+            var validator = new InputValidator();
 
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
             try
             {
-                validator.CheckAngleRange();
+                validator.CheckAngleRange("90");
             }
             catch (Exception ex)
             {
@@ -218,45 +169,27 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void CheckAngleRange_OutsideLowerRange_ReturnsException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("0");
+            var validator = new InputValidator();
 
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckAngleRange());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckAngleRange("0"));
         }
 
         [TestMethod]
         public void CheckAngleRange_OutsideUpperRange_ReturnsException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("91");
+            var validator = new InputValidator();
 
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckAngleRange());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckAngleRange("91"));
         }
 
         [TestMethod]
         public void CheckVelocityRange_InsideLowerRange_ReturnsNoException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("1");
+            var validator = new InputValidator();
 
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
             try
             {
-                validator.CheckVelocityRange();
+                validator.CheckVelocityRange("1");
             }
             catch (Exception ex)
             {
@@ -267,17 +200,11 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void CheckVelocityRange_InsideUpperRange_ReturnsNoException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("20");
+            var validator = new InputValidator();
 
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
             try
             {
-                validator.CheckVelocityRange();
+                validator.CheckVelocityRange("20");
             }
             catch (Exception ex)
             {
@@ -288,29 +215,17 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void CheckVelocityRange_OutsideLowerRange_ReturnsException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("0");
+            var validator = new InputValidator();
 
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckVelocityRange());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckVelocityRange("0"));
         }
 
         [TestMethod]
         public void CheckVelocityRange_OutsideUpperRange_ReturnsException()
         {
-            // Arrange
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetVelocity()).Returns("21");
+            var validator = new InputValidator();
 
-            // Act
-            var validator = new InputValidator(MockInput.Object);
-
-            // Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckVelocityRange());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => validator.CheckVelocityRange("21"));
         }
     }
 }

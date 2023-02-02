@@ -9,13 +9,6 @@ namespace Tech_Exc_Project_2
 {
     public class ShotCalculator : IShotCalculator
     {
-        private IInputValidator _validator;
-
-        public ShotCalculator(IInputValidator validator)
-        {
-            _validator = validator;
-        }
-
         public int xCoOrdinate(int angle, int velocity)
         {
             return (int) Math.Round(Math.Cos(angle * (Math.PI / 180)) * velocity, MidpointRounding.AwayFromZero);

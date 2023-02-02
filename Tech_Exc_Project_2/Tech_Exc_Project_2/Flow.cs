@@ -50,18 +50,18 @@ namespace Tech_Exc_Project_2
             bool loop = true;
             while (loop)
             {
-                _command.SetShotSelection();
-                _validator.ParseShotSelection();
-                bool mortorOrNot = _validator.MortorOrNot();
+                _command.SetShotSelection();   
+                _validator.ParseShotSelection(_command.GetShotSelection());
+                bool mortorOrNot = _validator.MortorOrNot(_command.GetShotSelection());
 
                 _command.SetAngle();
-                int angle = _validator.ParseAngle();
-                _validator.CheckAngleRange();
-                _validator.EnforceMortorAngle();
+                int angle = _validator.ParseAngle(_command.GetAngle());
+                _validator.CheckAngleRange(_command.GetAngle());
+                _validator.EnforceMortorAngle(_command.GetAngle(), _command.GetShotSelection());
 
                 _command.SetVelocity();
-                int velocity = _validator.ParseVelocity();
-                _validator.CheckVelocityRange();
+                int velocity = _validator.ParseVelocity(_command.GetVelocity());
+                _validator.CheckVelocityRange(_command.GetVelocity());
 
                 _finalShotCounter.SetCounter();
 
@@ -82,7 +82,7 @@ namespace Tech_Exc_Project_2
             }
 
             _timeTracker.StopTimer();
-            
+
             _populateJson.UpdateJson(_command.GetPlayerName(), _finalShotCounter.GetCounter(), _timeTracker.GetTime());
 
             _populateJson.PrintJson();

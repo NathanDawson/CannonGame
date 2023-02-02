@@ -13,17 +13,11 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void HitOrNot_Hit_ReturnTrue()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("35");
-            MockInput.Setup(x => x.GetVelocity()).Returns("15");
-            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
-
             var MockOutput = new Mock<ITargetGenerator>();
             MockOutput.Setup(x => x.GetXCoOrdinates()).Returns(12);
             MockOutput.Setup(x => x.GetYCoOrdinates()).Returns(9);
 
-            var validator = new InputValidator(MockInput.Object);
-            var shotCalculator = new ShotCalculator(validator);
+            var shotCalculator = new ShotCalculator();
             var targetGenerator = new TargetGenerator();
             var targetJudge = new TargetJudge(MockOutput.Object, shotCalculator);
 
@@ -35,17 +29,11 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void HitOrNot_Miss_ReturnFalse()
         {
-            var MockInput = new Mock<ICommandLine>();
-            MockInput.Setup(x => x.GetAngle()).Returns("25");
-            MockInput.Setup(x => x.GetVelocity()).Returns("15");
-            MockInput.Setup(x => x.GetShotSelection()).Returns("1");
-
             var MockOutput = new Mock<ITargetGenerator>();
             MockOutput.Setup(x => x.GetXCoOrdinates()).Returns(12);
             MockOutput.Setup(x => x.GetYCoOrdinates()).Returns(9);
 
-            var validator = new InputValidator(MockInput.Object);
-            var shotCalculator = new ShotCalculator(validator);
+            var shotCalculator = new ShotCalculator();
             var targetGenerator = new TargetGenerator();
             var targetJudge = new TargetJudge(MockOutput.Object, shotCalculator);
 

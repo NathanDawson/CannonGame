@@ -11,8 +11,8 @@ namespace Tech_Exc_Project_2
         public IFlow GetFlow()
         {
             ICommandLine _command = new CommandLine();
-            IInputValidator _validator = new InputValidator(_command);
-            IShotCalculator _shotCalculator = new ShotCalculator(_validator);
+            IInputValidator _validator = new InputValidator();
+            IShotCalculator _shotCalculator = new ShotCalculator();
             ITargetGenerator _targetGenerator = new TargetGenerator();
             ITargetJudge _targetJudge = new TargetJudge(_targetGenerator, _shotCalculator);
             IFinalShotCounter _finalShotCounter = new FinalShotCounter();

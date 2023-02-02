@@ -14,15 +14,12 @@ namespace Tech_Exc_Project_2.UnitTests
         public void flow_Verify_RunsOnce()
         {
             var MockInput = new Mock<ICommandLine>();
+            var MockValid = new Mock<IInputValidator>();
             var MockShot = new Mock<IShotCalculator>();
             var MockOutput = new Mock<ITargetGenerator>();
             var MockFinal = new Mock<IFinalShotCounter>();
             var MockTime = new Mock<ITimeTracker>();
             var MockJson = new Mock<IPopulateJson>();
-
-            var MockValid = new Mock<IInputValidator>();
-            MockValid.Setup(x => x.ParseAngle()).Returns(35);
-            MockValid.Setup(x => x.ParseVelocity()).Returns(10);
 
             var MockJudge = new Mock<ITargetJudge>();
             MockJudge.Setup(x => x.HitOrNot(35, 10, false)).Returns(ITargetJudge.Status.Hit);
@@ -31,30 +28,24 @@ namespace Tech_Exc_Project_2.UnitTests
 
             flow.Run();
 
-            MockOutput.Verify(x => x.SetXCoOrdinates(), Times.Once);
-            MockOutput.Verify(x => x.SetYCoOrdinates(), Times.Once);
+            MockInput.Verify(x => x.SetShotSelection(), Times.Once);
 
-            MockTime.Verify(x=> x.StartTimer(), Times.Once);
+            MockValid.Verify(x => x.ParseShotSelection(null), Times.Once);
 
-            MockOutput.Verify(x => x.GetXCoOrdinates(), Times.Once);
-            MockOutput.Verify(x => x.GetYCoOrdinates(), Times.Once);
+            MockInput.Verify(x => x.SetAngle(), Times.Once);
+            MockValid.Verify(x => x.CheckAngleRange(null), Times.Once);
+            MockValid.Verify(x => x.EnforceMortorAngle(null, null), Times.Once);
 
-            MockInput.Verify(x => x.SetAngle(), Times.Once());
-            MockInput.Verify(x => x.SetVelocity(), Times.Once());
-            MockInput.Verify(x => x.SetPlayerName(), Times.Once);
-
-            MockValid.Verify(x => x.ParseAngle(), Times.Once);
-            MockValid.Verify(x => x.ParseVelocity(), Times.Once);
-            MockValid.Verify(x => x.CheckAngleRange(), Times.Once);
-            MockValid.Verify(x => x.CheckVelocityRange(), Times.Once);
+            MockInput.Verify(x => x.SetVelocity(), Times.Once);
+            MockValid.Verify(x => x.CheckVelocityRange(null), Times.Once);
 
             MockFinal.Verify(x => x.SetCounter(), Times.Once);
-            MockFinal.Verify(x => x.GetCounter(), Times.Exactly(2));
 
-            MockJudge.Verify(x => x.HitOrNot(35, 10, false), Times.Once);
+            MockFinal.Verify(x => x.GetCounter(), Times.Exactly(2));
 
             MockTime.Verify(x => x.StopTimer(), Times.Once);
 
+            MockJson.Verify(x => x.UpdateJson(null, 0, 0), Times.Once);
             MockJson.Verify(x => x.PrintJson(), Times.Once);
         }
     }

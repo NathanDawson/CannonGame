@@ -8,12 +8,12 @@ namespace Tech_Exc_Project_2
 {
     public interface IInputValidator
     {
-        int ParseAngle();
-        int ParseVelocity();
-        void CheckAngleRange();
-        void CheckVelocityRange();
-        int ParseShotSelection();
-        bool MortorOrNot();
-        void EnforceMortorAngle();
+        int ParseAngle(string angle);
+        int ParseVelocity(string velocity);
+        void CheckAngleRange(string angle);
+        void CheckVelocityRange(string velocity);
+        int ParseShotSelection(string shotType);
+        bool MortorOrNot(string shotType);
+        void EnforceMortorAngle(string angle, string shotType);
     }
 }
