@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace Tech_Exc_Project_2
 {
     public class PopulateJson : IPopulateJson
     {
-        private string path = @"C:\Users\Nathan.Dawson\OneDrive - Apexon\Documents\Tech-Track\Tech-Exc\Project_2\Tech_Exc_Project_2\Tech_Exc_Project_2\UserData.json";
+        private static string path = "/Users/nathandawson/CannonGame/Tech_Exc_Project_2/Tech_Exc_Project_2/UserData.json";
 
         public void UpdateJson(string PlayerName, int Score, int TotalTime)
         {
