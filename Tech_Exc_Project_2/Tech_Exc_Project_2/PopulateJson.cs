@@ -10,11 +10,17 @@ namespace Tech_Exc_Project_2
 {
     public class PopulateJson : IPopulateJson
     {
-        private static string path = "/Users/nathandawson/CannonGame/Tech_Exc_Project_2/Tech_Exc_Project_2/UserData.json";
+        public string GetFilePath()
+        {
+            DotNetEnv.Env.Load();
+
+            var filePath = Environment.GetEnvironmentVariable("FILEPATH");
+            return filePath;
+        }
 
         public void UpdateJson(string PlayerName, int Score, int TotalTime)
         {
-            var CurrentJsonFile = File.ReadAllText(path);
+            var CurrentJsonFile = File.ReadAllText(GetFilePath());
             var UserDataList = JsonConvert.DeserializeObject<List<UserData>>(CurrentJsonFile);
 
             UserDataList.Add(new UserData()
@@ -25,12 +31,12 @@ namespace Tech_Exc_Project_2
             });
 
             CurrentJsonFile = JsonConvert.SerializeObject(UserDataList, Formatting.Indented);
-            File.WriteAllText(path, CurrentJsonFile);
+            File.WriteAllText((GetFilePath()), CurrentJsonFile);
         }
 
         public void PrintJson()
         {
-            var CurrentJsonFile = File.ReadAllText(path);
+            var CurrentJsonFile = File.ReadAllText(GetFilePath());
             var UserDataList = JsonConvert.DeserializeObject<List<UserData>>(CurrentJsonFile);
 
             var lst = (from x in UserDataList

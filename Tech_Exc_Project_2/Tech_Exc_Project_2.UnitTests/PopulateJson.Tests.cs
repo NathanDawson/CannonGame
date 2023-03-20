@@ -12,7 +12,10 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void PopulateJson_JsonFileExists_ReturnTrue()
         {
-            Assert.IsTrue(File.Exists(@"C:\Users\Nathan.Dawson\OneDrive - Apexon\Documents\Tech-Track\Tech-Exc\Project_2\Tech_Exc_Project_2\Tech_Exc_Project_2\UserData.json"));
+            DotNetEnv.Env.Load();
+            var populate = new PopulateJson();
+
+            Assert.IsTrue(File.Exists(populate.GetFilePath()));
         }
     }
 }
