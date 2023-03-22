@@ -21,8 +21,9 @@ A simple game comprising of a 10 x 10 grid containing a randomly generated targe
 target at (7, 7) and shot lands at (6, 7) then this is a hit
 - However, the angle can only be provided in increments of 5
 
+## Showcase
 <img
-  src="img/terminal_game.png"
+  src="Tech_Exc_Project_2/Tech_Exc_Project_2/img/terminal_game.png"
   alt="Alt text"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 60vw">
