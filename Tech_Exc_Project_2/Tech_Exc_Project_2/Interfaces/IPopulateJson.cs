@@ -8,8 +8,6 @@ namespace Tech_Exc_Project_2
 {
     public interface IPopulateJson
     {
-        string GetFilePath();
-
         void UpdateJson(string PlayerName, int Score, int TotalTime);
 
         void PrintJson();

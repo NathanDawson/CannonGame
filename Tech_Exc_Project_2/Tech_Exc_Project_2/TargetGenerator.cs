@@ -15,7 +15,8 @@ namespace Tech_Exc_Project_2
         
         public void SetXCoOrdinates()
         {
-            XCoOrds = r.Next(10);
+            //XCoOrds = r.Next(10);
+            XCoOrds = 0;
         }
         public int GetXCoOrdinates()
         {
@@ -24,7 +25,8 @@ namespace Tech_Exc_Project_2
 
         public void SetYCoOrdinates()
         {
-            YCoOrds = r.Next(10);
+            //YCoOrds = r.Next(10);
+            YCoOrds = 3;
         }
 
         public int GetYCoOrdinates()

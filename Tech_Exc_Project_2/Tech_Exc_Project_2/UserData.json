@@ -18,5 +18,10 @@
     "UserName": "Harry",
     "FinalScore": 0,
     "TimeElapsed": 1
+  },
+  {
+    "UserName": "Nathan",
+    "FinalScore": 1,
+    "TimeElapsed": 19
   }
 ]

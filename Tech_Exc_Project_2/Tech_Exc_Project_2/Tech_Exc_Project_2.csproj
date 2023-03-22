@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Docs\Requirements.md~RF3961ffb5.TMP" />
     <None Remove="Tech_Exc_Project_2 - Shortcut.lnk" />
+    <None Remove="img\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,4 +21,7 @@
     <PackageReference Include="VisualStudio.gitignore" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="img\" />
+  </ItemGroup>
 </Project>

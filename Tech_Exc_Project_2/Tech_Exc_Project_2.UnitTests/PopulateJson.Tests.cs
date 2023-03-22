@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Tech_Exc_Project_2.UnitTests
 {
@@ -12,10 +13,9 @@ namespace Tech_Exc_Project_2.UnitTests
         [TestMethod]
         public void PopulateJson_JsonFileExists_ReturnTrue()
         {
-            DotNetEnv.Env.Load();
             var populate = new PopulateJson();
 
-            Assert.IsTrue(File.Exists(populate.GetFilePath()));
+            Assert.IsTrue(File.Exists(populate.filePath));
         }
     }
 }
